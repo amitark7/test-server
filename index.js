@@ -3,7 +3,14 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: (origin, callback) => {
+    callback(null, origin); // Allow all origins
+  },
+  credentials: true, // Allow credentials (cookies, HTTP authentication)
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 // Express server example:
